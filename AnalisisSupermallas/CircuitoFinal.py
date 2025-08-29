@@ -8,7 +8,10 @@ import subprocess, sys, os
 from io import BytesIO
 
 def dibujar_circuito_original():
-    with schemdraw.Drawing() as d:
+     import schemdraw
+     import schemdraw.elements as elm
+
+     with schemdraw.Drawing() as d:
         d += elm.SourceV().up().label("20V")
         d += elm.Resistor().right().label("R1=6Ω")
         d += elm.Dot(open=True).label("a")
@@ -20,10 +23,8 @@ def dibujar_circuito_original():
         d += elm.Dot(open=True).label("c")
         d += elm.Line().up()
 
-        buffer = BytesIO()
-        d.save(buffer, 'circuito.png')  # ¡sin fmt!
-        buffer.seek(0)
-        return buffer
+        d.save("circuito.png")
+     return "circuito.png"
 
 def dibujar_circuito_supermalla():
     with schemdraw.Drawing() as d:
@@ -33,10 +34,10 @@ def dibujar_circuito_supermalla():
         d += elm.Resistor().right().label("R2=4Ω")
         d += elm.Dot(open=True).label("b")
 
-        buffer = BytesIO()
-        d.save(buffer, 'supermalla.png')  # <-- aquí se corrige
-        buffer.seek(0)
-        return buffer
+        # Guardar como archivo
+        d.save("supermalla.png")
+    
+    return "supermalla.png"
 
 def main():
     st.title(" Análisis de Supermallas ")
