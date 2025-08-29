@@ -4,7 +4,7 @@ import schemdraw
 import schemdraw.elements as elm
 from io import BytesIO
 import matplotlib.pyplot as plt
-
+import subprocess, sys, os
 from io import BytesIO
 
 def dibujar_circuito_original():
@@ -45,7 +45,7 @@ def main():
     st.header("1. Circuito original con mallas")
     st.image(dibujar_circuito_original(), caption="Circuito original con corrientes de malla")
 
-    st.header("2. Circuito equivalente (Supermalla)")
+    st.header("2. Circuito (Supermalla)")
     st.image(dibujar_circuito_supermalla(), caption="Circuito reducido con supermalla")
 
     # === LKC ===
@@ -61,7 +61,7 @@ def main():
 
     # === LKV ===
     st.header("2) LKV en la Supermalla")
-    st.write("Aplicamos la **Ley de Voltajes de Kirchhoff (KVL)** alrededor de la supermalla:")
+    st.write("Aplico la **Ley de Voltajes de Kirchhoff (KVL)** alrededor de la supermalla:")
     st.latex(r"I_1R_1 + I_1R_2 + I_2R_3 = 32")
     st.latex(r"10I_1 + 2I_2 = 32 \quad (2)")
 
@@ -72,7 +72,7 @@ def main():
     st.latex(r"10I_1 + 2I_2 = 32")
 
     # === Método de Cramer ===
-    st.header("4️⃣ Resolviendo con el Método de Cramer")
+    st.header("4️)  Resolviendo con el Método de Cramer")
 
     # Matriz de coeficientes
     A = np.array([[1, -1], [10, 2]])
@@ -140,8 +140,9 @@ def main():
     - La Ley de Ohm para calcular tensiones
     """)
 
-    st.success("✅ Los resultados obtenidos permiten conocer corrientes y tensiones en cada resistencia.")
+    st.success(" Los resultados obtenidos permiten conocer corrientes y tensiones en cada resistencia.")
 
 
 if __name__ == "__main__":
     main()
+    
